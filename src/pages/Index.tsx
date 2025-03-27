@@ -9,8 +9,8 @@ const Index = () => {
   return (
     <div className="min-h-screen p-4 md:p-8 bg-gray-50">
       <header className="mb-8 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold mb-3">Data Structure Visualization</h1>
-        <p className="text-gray-600">Learn and visualize fundamental data structures with interactive animations</p>
+        <h1 className="text-3xl md:text-4xl font-bold mb-3">Cấu trúc dữ liệu và Giải thuật</h1>
+        <p className="text-gray-600">Nhóm 2</p>
       </header>
 
       <main className="max-w-5xl mx-auto">
