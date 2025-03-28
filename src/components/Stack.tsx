@@ -17,32 +17,32 @@ const Stack = () => {
 
   const push = () => {
     if (!pushValue) {
-      toast({ title: "Error", description: "Please enter a value", variant: "destructive" });
+      toast({ title: "Lỗi", description: "Vui lòng nhập giá trị", variant: "destructive" });
       return;
     }
     const newItem = { value: parseInt(pushValue), id: Date.now() };
-    setStack([newItem, ...stack]);
+    setStack([...stack, newItem]);
     setPushValue("");
-    toast({ title: "Success", description: "Item pushed to stack" });
+    toast({ title: "Thành công", description: "Đã thêm phần tử vào ngăn xếp" });
   };
 
   const pop = () => {
     if (stack.length === 0) {
-      toast({ title: "Error", description: "Stack is empty", variant: "destructive" });
+      toast({ title: "Lỗi", description: "Ngăn xếp đang trống", variant: "destructive" });
       return;
     }
     const newStack = [...stack];
-    const popped = newStack.shift();
+    const popped = newStack.pop();
     setStack(newStack);
-    toast({ title: "Success", description: `Popped value: ${popped?.value}` });
+    toast({ title: "Thành công", description: `Đã lấy ra giá trị: ${popped?.value}` });
   };
 
   const peek = () => {
     if (stack.length === 0) {
-      toast({ title: "Error", description: "Stack is empty", variant: "destructive" });
+      toast({ title: "Lỗi", description: "Ngăn xếp đang trống", variant: "destructive" });
       return;
     }
-    toast({ title: "Top Value", description: `Current top value: ${stack[0].value}` });
+    toast({ title: "Giá Trị Đỉnh", description: `Giá trị đỉnh hiện tại: ${stack[stack.length - 1].value}` });
   };
 
   return (
@@ -82,20 +82,23 @@ const Stack = () => {
 
       <div className="flex justify-center py-8">
         <AnimatePresence>
-          <div className="flex flex-col-reverse gap-2">
-            {stack.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 50 }}
-                className={`w-32 h-12 flex items-center justify-center border-2 
-                  ${index === 0 ? "border-orange-500 bg-orange-50" : "border-orange-300 bg-white"}
-                  rounded-lg`}
-              >
-                {item.value}
-              </motion.div>
-            ))}
+          <div className="flex flex-col gap-2">
+            {stack.slice().reverse().map((item, reversedIndex) => {
+              const index = stack.length - 1 - reversedIndex;
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  className={`w-32 h-12 flex items-center justify-center border-2 
+                    ${index === stack.length - 1 ? "border-orange-500 bg-orange-50" : "border-orange-300 bg-white"}
+                    rounded-lg`}
+                >
+                  {item.value}
+                </motion.div>
+              );
+            })}
           </div>
         </AnimatePresence>
       </div>

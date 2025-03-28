@@ -18,32 +18,32 @@ const Queue = () => {
 
   const enqueue = () => {
     if (!enqueueValue) {
-      toast({ title: "Error", description: "Please enter a value", variant: "destructive" });
+      toast({ title: "Lỗi", description: "Vui lòng nhập giá trị", variant: "destructive" });
       return;
     }
     const newItem = { value: parseInt(enqueueValue), id: Date.now() };
     setQueue([...queue, newItem]);
     setEnqueueValue("");
-    toast({ title: "Success", description: "Item added to queue" });
+    toast({ title: "Thành công", description: "Đã thêm phần tử vào hàng đợi" });
   };
 
   const dequeue = () => {
     if (queue.length === 0) {
-      toast({ title: "Error", description: "Queue is empty", variant: "destructive" });
+      toast({ title: "Lỗi", description: "Hàng đợi đang trống", variant: "destructive" });
       return;
     }
     const newQueue = [...queue];
     const dequeued = newQueue.shift();
     setQueue(newQueue);
-    toast({ title: "Success", description: `Dequeued value: ${dequeued?.value}` });
+    toast({ title: "Thành công", description: `Đã lấy ra giá trị: ${dequeued?.value}` });
   };
 
   const front = () => {
     if (queue.length === 0) {
-      toast({ title: "Error", description: "Queue is empty", variant: "destructive" });
+      toast({ title: "Lỗi", description: "Hàng đợi đang trống", variant: "destructive" });
       return;
     }
-    toast({ title: "Front Value", description: `Current front value: ${queue[0].value}` });
+    toast({ title: "Giá Trị Đầu", description: `Giá trị đầu hiện tại: ${queue[0].value}` });
   };
 
   return (
