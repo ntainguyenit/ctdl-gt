@@ -23,19 +23,19 @@ const SinglyLinkedList = () => {
 
   const addNode = () => {
     if (!insertValue) {
-      toast({ title: "Error", description: "Please enter a value", variant: "destructive" });
+      toast({ title: "Lỗi", description: "Vui lòng nhập giá trị", variant: "destructive" });
       return;
     }
     const newNode = { value: parseInt(insertValue), id: Date.now() };
     setList([...list, newNode]);
     setInsertValue("");
-    toast({ title: "Success", description: "Node added successfully" });
+    toast({ title: "Thành công", description: "Đã thêm phần tử vào danh sách" });
   };
 
   const insertAt = () => {
     const pos = parseInt(insertAtPos);
     if (!insertAtValue || isNaN(pos) || pos < 0 || pos > list.length) {
-      toast({ title: "Error", description: "Invalid position or value", variant: "destructive" });
+      toast({ title: "Lỗi", description: "Vị trí hoặc giá trị không hợp lệ", variant: "destructive" });
       return;
     }
     const newNode = { value: parseInt(insertAtValue), id: Date.now() };
@@ -44,35 +44,35 @@ const SinglyLinkedList = () => {
     setList(newList);
     setInsertAtValue("");
     setInsertAtPos("");
-    toast({ title: "Success", description: "Node inserted successfully" });
+    toast({ title: "Thành công", description: "Đã chèn phần tử thành công" });
   };
 
   const deleteAt = () => {
     const pos = parseInt(deletePos);
     if (isNaN(pos) || pos < 0 || pos >= list.length) {
-      toast({ title: "Error", description: "Invalid position", variant: "destructive" });
+      toast({ title: "Lỗi", description: "Vị trí không hợp lệ", variant: "destructive" });
       return;
     }
     const newList = [...list];
     newList.splice(pos, 1);
     setList(newList);
     setDeletePos("");
-    toast({ title: "Success", description: "Node deleted successfully" });
+    toast({ title: "Thành công", description: "Đã xóa phần tử thành công" });
   };
 
   const search = () => {
     if (!searchValue) {
-      toast({ title: "Error", description: "Please enter a search value", variant: "destructive" });
+      toast({ title: "Lỗi", description: "Vui lòng nhập giá trị cần tìm", variant: "destructive" });
       return;
     }
     const value = parseInt(searchValue);
     const index = list.findIndex(node => node.value === value);
     if (index === -1) {
-      toast({ title: "Not Found", description: "Value not found in list", variant: "destructive" });
+      toast({ title: "Không tìm thấy", description: "Không tìm thấy giá trị trong danh sách", variant: "destructive" });
     } else {
       setHighlightedIndex(index);
       setTimeout(() => setHighlightedIndex(null), 2000);
-      toast({ title: "Found", description: `Value found at position ${index}` });
+      toast({ title: "Đã tìm thấy", description: `Giá trị được tìm thấy tại vị trí ${index}` });
     }
     setSearchValue("");
   };
